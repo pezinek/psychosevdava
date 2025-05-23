@@ -36,7 +36,7 @@ def upload_photos():
                         print(f'Error generating image thumbnail: {e}')
                 elif file_extension in ['.mp4', '.webm', '.ogg', '.mov']:
                     try:
-                        subprocess.run(['ffmpeg', '-i', filepath, '-ss', '00:00:01.000', '-vframes', '1', '-update', '1', thumbnail_path], check=True)
+                        subprocess.run(['ffmpeg', '-y', '-i', filepath, '-ss', '00:00:01.000', '-vframes', '1', '-update', '1', thumbnail_path], check=True)
                     except Exception as e:
                         print(f'Error generating video thumbnail: {e}')
 

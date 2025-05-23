@@ -1,0 +1,3 @@
+flask
+pillow
+pyheif #requires brew install libheif

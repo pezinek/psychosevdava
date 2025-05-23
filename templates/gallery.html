@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Photos & Videos{% endblock %}
+
+{% block content %}
+<div class="container" role="main">
+    <h1>Nahraj Fotky</h1>
+    <form method="post" enctype="multipart/form-data" novalidate>
+        <label for="file-upload" class="upload-btn" tabindex="0">Vyber fotky</label>
+        <input type="file" id="file-upload" name="photos" accept="image/*,video/*" multiple />
+        <button type="submit" class="upload-submit-btn">Odeslat</button>
+    </form>
+
+    <h2>Galerie</h2>
+    <div class="gallery" aria-label="Galerie fotek a videí">
+        {% for file in photos %}
+            <img src="{{ url_for('thumbnail_file', filename=file + '.jpg') }}" alt="Foto nebo video" tabindex="0"
+                 onclick="showMedia('{{ url_for('uploaded_file', filename=file) }}', '{{ file.lower().endswith(('.mp4', '.webm', '.ogg', '.mov')) }}' == 'True')"
+                 onkeypress="if(event.key === 'Enter' || event.key === ' ') showMedia('{{ url_for('uploaded_file', filename=file) }}', '{{ file.lower().endswith(('.mp4', '.webm', '.ogg', '.mov')) }}' == 'True')">
+        {% endfor %}
+    </div>
+
+    <div class="pagination" role="navigation" aria-label="Stránkování galerie">
+        {% if prev_page is not none %}
+            <a href="?page={{ prev_page }}"><button type="button" aria-label="Předchozí stránka">Předchozí</button></a>
+        {% else %}
+            <button type="button" disabled aria-disabled="true">Předchozí</button>
+        {% endif %}
+        {% if next_page is not none %}
+            <a href="?page={{ next_page }}"><button type="button" aria-label="Další stránka">Další</button></a>
+        {% else %}
+            <button type="button" disabled aria-disabled="true">Další</button>
+        {% endif %}
+    </div>
+</div>
+
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Náhled fotky nebo videa" tabindex="-1" onclick="hideMedia()">
+    <img id="modal-img" src="" alt="Velký náhled" />
+    <video id="modal-video" controls style="display:none;"></video>
+</div>
+{% endblock %}
+

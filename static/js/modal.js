@@ -22,6 +22,7 @@ function hideMedia() {
     modalVideo.pause();
     modalVideo.src = '';
 }
+
 // Update file input label with selected file names
 document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('file-upload');
@@ -34,6 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             uploadLabel.textContent = `${fileInput.files.length} souborů vybráno`;
         }
+    });
+});
+
+// Show loading indicator on submit
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('upload-form');
+    const loadingIndicator = document.getElementById('loading-indicator');
+
+    form.addEventListener('submit', () => {
+        loadingIndicator.style.display = 'block';
+        form.style.display = 'none';
     });
 });
 

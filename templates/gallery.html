@@ -5,11 +5,16 @@
 {% block content %}
 <div class="container" role="main">
     <h1>Nahraj Fotky</h1>
-    <form method="post" enctype="multipart/form-data" novalidate>
+    <form id="upload-form" method="post" enctype="multipart/form-data" novalidate>
         <label for="file-upload" class="upload-btn" tabindex="0">Vybrat fotky</label>
         <input type="file" id="file-upload" name="photos" accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm,video/ogg,video/quicktime" multiple />
         <button type="submit" class="upload-submit-btn">Odeslat</button>
     </form>
+
+    <div id="loading-indicator" style="display:none; margin-top: 15px; color: #e6f0e8; font-weight: 600; text-align: center;">
+        <div class="spinner" aria-hidden="true"></div>
+        <div>Nahrávám fotky ...</div>
+    </div>
 
     <h2>Galerie</h2>
     <div class="gallery" aria-label="Galerie fotek a videí">

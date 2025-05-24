@@ -238,3 +238,18 @@ button.upload-submit-btn:focus {
     }
 }
 
+.spinner {
+    margin: 0 auto 8px auto;
+    width: 32px;
+    height: 32px;
+    border: 4px solid rgba(230, 240, 232, 0.3);
+    border-top-color: #0a6b3a; /* evergreen accent */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+

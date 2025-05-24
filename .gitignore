@@ -1,4 +1,6 @@
 venv
 thumbnails
 uploaded_photos
+__pycache__
+.DS_Store
 

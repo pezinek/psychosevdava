@@ -1,0 +1,23 @@
+[Unit]
+Description=Gunicorn instance to serve photo upload for http://psychosevdava.cz/nahraj-fotky/
+After=network.target
+
+[Service]
+User=www-data # Or your desired user (e.g., your_username, ubuntu)
+Group=www-data # Or your desired group
+WorkingDirectory=/var/www/psychosevdava/nahraj-fotky/ 
+ExecStart=/var/www/psychosevdava/nahraj-fotky/gunicorn_start.sh # IMPORTANT: CHANGE THIS TO YOUR ACTUAL PATH
+Restart=always
+PrivateTmp=true # Clean up temporary files after service stops
+
+# Environment variables (optional, but good for Flask/Gunicorn)
+# Environment="FLASK_ENV=production"
+# Environment="SECRET_KEY=your_super_secret_key" # Replace with a real key!
+
+# Standard output and error to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=my_flask_app
+
+[Install]
+WantedBy=multi-user.target

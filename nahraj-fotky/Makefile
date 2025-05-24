@@ -23,6 +23,7 @@ venv:
 	@echo "Setting up virtual environment..."
 	@test -d $(VENV_DIR) || python3 -m venv $(VENV_DIR)
 	@echo "Installing dependencies..."
+	@$(PIP) install --upgrade pip setuptools wheel
 	@$(PIP) install -r requirements.txt
 
 run: venv

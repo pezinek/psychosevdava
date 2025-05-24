@@ -33,6 +33,14 @@ def crop_and_resize_to_square(img, size):
     
     img = img.crop((left, top, right, bottom))
     img = img.resize(size, Image.LANCZOS) # Use LANCZOS for high-quality downsampling
+
+    if img.mode == 'RGBA':
+        # Create a new opaque image with a black background
+        background = Image.new('RGB', img.size, (0, 0, 0))
+        # Composite the RGBA image onto the background
+        background.paste(img, (0, 0), img) # The third argument (mask) is important for RGBA
+        img = background
+
     return img
 
 @app.route('/', methods=['GET', 'POST'])

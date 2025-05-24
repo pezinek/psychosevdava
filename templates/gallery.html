@@ -18,10 +18,11 @@
 
     <h2>Galerie</h2>
     <div class="gallery" aria-label="Galerie fotek a videí">
-        {% for file in photos %}
-            <img src="{{ url_for('thumbnail_file', filename=file + '.jpg') }}" alt="Foto nebo video" tabindex="0"
-                 onclick="showMedia('{{ url_for('uploaded_file', filename=file) }}', '{{ file.lower().endswith(('.mp4', '.webm', '.ogg', '.mov')) }}' == 'True')"
-                 onkeypress="if(event.key === 'Enter' || event.key === ' ') showMedia('{{ url_for('uploaded_file', filename=file) }}', '{{ file.lower().endswith(('.mp4', '.webm', '.ogg', '.mov')) }}' == 'True')">
+        {# Corrected: Iterate over gallery_items and use item.thumbnail_filename #}
+        {% for item in gallery_items %}
+            <img src="{{ url_for('thumbnail_file', filename=item.thumbnail_filename) }}" alt="Foto nebo video" tabindex="0"
+                 onclick="showMedia('{{ url_for('uploaded_file', filename=item.original_filename) }}', {{ 'true' if item.is_video else 'false' }})"
+                 onkeypress="if(event.key === 'Enter' || event.key === ' ') showMedia('{{ url_for('uploaded_file', filename=item.original_filename) }}', {{ 'true' if item.is_video else 'false' }})">
         {% endfor %}
     </div>
 

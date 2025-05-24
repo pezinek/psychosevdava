@@ -1,0 +1,104 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.background {
+    /* Replace the URL below with your desired background image */
+    background-image: 
+       linear-gradient(rgba(5, 71, 42, 0.5), rgba(5, 71, 42, 1)),
+       url('background.jpg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    color: #e6f0e8; /* light evergreen tint for text readability */
+    background-blend-mode: overlay;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 10%; /* shifted a bit upward */
+    left: 50%;
+    transform: translate(-50%, -10%);
+    background-color: rgba(5, 71, 42, 0.75); /* evergreen with transparency */
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 90%;
+    box-shadow: 0 0 15px rgba(5, 71, 42, 0.8);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 480px) {
+    .overlay {
+        top: 45%;
+        transform: translate(-50%, -45%);
+        padding: 15px 25px;
+        max-width: 95%;
+    }
+}
+
+.upload-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 36px;           /* slightly bigger padding */
+    font-size: 1.2em;             /* larger font */
+    font-weight: 700;             /* bolder text */
+    color: #e6f0e8;               /* light evergreen tint */
+    background: linear-gradient(145deg, #0a6b3a, #05472a); /* subtle gradient */
+    border: 2px solid #0a6b3a;   /* solid evergreen border */
+    border-radius: 8px;           /* slightly more rounded */
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(5, 71, 42, 0.7); /* stronger shadow */
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.upload-btn:hover,
+.upload-btn:focus {
+    background: linear-gradient(145deg, #0f7f4b, #0a6b3a);
+    box-shadow: 0 10px 20px rgba(5, 71, 42, 0.9);
+    transform: scale(1.05);
+    outline: none;
+    text-decoration: none;
+}
+
+.map-link {
+    color: #a3c9a8; /* lighter evergreen shade */
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.map-link:hover,
+.map-link:focus {
+    color: #05472A; /* base evergreen on hover */
+    border-bottom-color: #05472A;
+    outline: none;
+    cursor: pointer;
+}
+
+#qrcode {
+    margin: 20px auto 0 auto;
+    width: 160px;
+    height: 160px;
+    background: rgba(5, 71, 42, 0.6); /* semi-transparent evergreen */
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(5, 71, 42, 0.7);
+}
+
+h1, p {
+    margin: 0 0 10px 0;
+    color: #e6f0e8; /* light evergreen tint */
+}
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psycho se vdává</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <meta property="og:title" content="Svatba Hanka a Roman">
+    <meta property="og:description" content="Pošlete své svatební momentky Hance a Romanovi.">
+    <meta property="og:image" content="https://psychosevdava.cz/background.jpg">
+    <meta property="og:type" content="website">
+</head>
+<body>
+    <div class="background">
+        <div class="overlay">
+            <h1>Psycho se vdává!</h1>
+            <p>Kdy: 31. 5. 2025 ve 14:00 hodin</p>
+	    <p>Kde: <a href="https://www.statekstarytyn.cz/" target="_blank" rel="noopener noreferrer" class="map-link">Na statku Starý Týn – Úštěk</a></p>
+	    <a href="/nahraj-fotky" class="upload-btn">Nahraj fotky</a>
+	    <div id="qrcode" aria-label="QR kód pro nahrání fotek" role="img"></div>
+        </div>
+    </div>
+
+    <!-- QRCode.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Generate QR code pointing to the upload script URL
+        const qrCodeContainer = document.getElementById('qrcode');
+        const uploadUrl = window.location.origin ; // full URL for scanning convenience
+
+        new QRCode(qrCodeContainer, {
+            text: uploadUrl,
+            width: 160,
+            height: 160,
+            colorDark: "transparent",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+
+</body>
+</html>
+

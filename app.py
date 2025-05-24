@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, send_from_directory
 import os
 import hashlib
-from PIL import Image
+from PIL import Image, ImageOps
 import subprocess
 
 app = Flask(__name__)
@@ -30,6 +30,7 @@ def upload_photos():
                 if file_extension in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
                     try:
                         img = Image.open(filepath)
+                        img = ImageOps.exif_transpose(img)
                         img.thumbnail((200, 200))
                         img.save(thumbnail_path)
                     except Exception as e:

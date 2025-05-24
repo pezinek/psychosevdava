@@ -17,13 +17,14 @@ body, html {
 /* Container */
 .container {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -40%);
+    transform: translate(-50%, -50%);
     background-color: rgba(5, 71, 42, 0.85);
     padding: 20px 30px;
     border-radius: 10px;
-    max-width: 90vw;
+    max-width: 95vw;
+    width: 90vw;
     max-height: 80vh;
     overflow-y: auto;
     box-shadow: 0 0 20px rgba(5, 71, 42, 0.9);
@@ -31,6 +32,33 @@ body, html {
     flex-direction: column;
     align-items: center;
 }
+
+/* Scrollbar styling for WebKit browsers */
+.container::-webkit-scrollbar {
+    width: 14px; /* slightly wider */
+}
+
+.container::-webkit-scrollbar-track {
+    background: rgba(5, 71, 42, 0.5); /* darker translucent track */
+    border-radius: 12px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: #0a6b3a; /* richer evergreen */
+    border-radius: 12px;
+    border: 3px solid rgba(5, 71, 42, 0.5); /* more visible border */
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background-color: #0f7f4b; /* lighter on hover */
+}
+
+/* Scrollbar styling for Firefox */
+.container {
+    scrollbar-width: auto; /* wider scrollbar */
+    scrollbar-color: #0a6b3a rgba(5, 71, 42, 0.5);
+}
+
 
 /* Headings */
 h1, h2 {

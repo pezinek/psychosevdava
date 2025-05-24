@@ -9,7 +9,7 @@ UPLOAD_FOLDER = 'uploaded_photos'
 THUMBNAIL_FOLDER = 'thumbnails'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(THUMBNAIL_FOLDER, exist_ok=True)
-PHOTOS_PER_PAGE = 50
+PHOTOS_PER_PAGE = 30
 THUMBNAIL_SIZE = (200, 200) # Define the desired thumbnail size (width, height)
 
 def crop_and_resize_to_square(img, size):

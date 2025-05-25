@@ -11,13 +11,13 @@ APP_PORT = 8000 # Changed port
 
 # --- Service Installation Variables ---
 # IMPORTANT: Adjust PROJECT_ROOT and SERVICE_NAME to your actual setup on the Ubuntu server
-PROJECT_ROOT = /var/www/psychosevdava # The absolute path to your project on the server
+PROJECT_ROOT = /var/www/psychosevdava/nahraj-fotky/
 SERVICE_NAME = psychosevdava
 SERVICE_FILE = $(SERVICE_NAME).service
 GUNICORN_SCRIPT = gunicorn_start.sh
 SYSTEMD_DIR = /etc/systemd/system
 
-all: venv run
+all: run
 
 venv:
 	@echo "Setting up virtual environment..."
@@ -41,6 +41,11 @@ clean-data:
 	@find uploaded_photos/ -maxdepth 1 -mindepth 1 ! -name '.gitkeep' -exec rm -rf {} + 2>/dev/null || true
 	@echo "Thumbnails and uploaded photos cleaned."
 
+setup-dirs:
+	mkdir -p uploaded_photos 
+	mkdir -p thumbnails
+	sudo chown www-data uploaded_photos thumbnails
+
 # --- Systemd Service Targets ---
 
 # This target requires sudo to copy the service file and script
@@ -48,7 +53,7 @@ install-service: $(GUNICORN_SCRIPT) $(SERVICE_FILE)
 	@echo "Installing systemd service '$(SERVICE_NAME)'..."
 	@echo "Ensure PROJECT_ROOT in Makefile and gunicorn_start.sh is correct: $(PROJECT_ROOT)"
 	# Copy gunicorn_start.sh to the project root (must be executable)
-	sudo cp $(GUNICORN_SCRIPT) $(PROJECT_ROOT)/$(GUNICORN_SCRIPT)
+	# sudo cp $(GUNICORN_SCRIPT) $(PROJECT_ROOT)/$(GUNICORN_SCRIPT)
 	sudo chmod +x $(PROJECT_ROOT)/$(GUNICORN_SCRIPT)
 	# Copy service file to systemd directory
 	sudo cp $(SERVICE_FILE) $(SYSTEMD_DIR)/$(SERVICE_FILE)
@@ -75,7 +80,7 @@ disable-service:
 remove-service: disable-service
 	@echo "Removing systemd service files for '$(SERVICE_NAME)'..."
 	sudo rm -f $(SYSTEMD_DIR)/$(SERVICE_FILE)
-	sudo rm -f $(PROJECT_ROOT)/$(GUNICORN_SCRIPT)
+	# sudo rm -f $(PROJECT_ROOT)/$(GUNICORN_SCRIPT)
 	sudo systemctl daemon-reload
 	@echo "Service files removed. You may need to clean logs manually if desired."
 

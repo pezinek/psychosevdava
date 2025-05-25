@@ -3,12 +3,12 @@ Description=Gunicorn instance to serve photo upload for http://psychosevdava.cz/
 After=network.target
 
 [Service]
-User=www-data # Or your desired user (e.g., your_username, ubuntu)
-Group=www-data # Or your desired group
+User=www-data
+Group=www-data
 WorkingDirectory=/var/www/psychosevdava/nahraj-fotky/ 
 ExecStart=/var/www/psychosevdava/nahraj-fotky/gunicorn_start.sh # IMPORTANT: CHANGE THIS TO YOUR ACTUAL PATH
 Restart=always
-PrivateTmp=true # Clean up temporary files after service stops
+PrivateTmp=true
 
 # Environment variables (optional, but good for Flask/Gunicorn)
 # Environment="FLASK_ENV=production"

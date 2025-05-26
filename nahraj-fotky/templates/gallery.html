@@ -4,7 +4,11 @@
 
 {% block content %}
 <div class="container" role="main">
+    <div class="page-header">
     <h1>Nahraj Fotky</h1>
+    <a href="/" class="close-btn" aria-label="Zavřít">&#10005;</a>
+    </div>
+
     <form id="upload-form" method="post" enctype="multipart/form-data" novalidate>
         <label for="file-upload" class="upload-btn" tabindex="0">Vybrat fotky</label>
         <input type="file" id="file-upload" name="photos" accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm,video/ogg,video/quicktime" multiple />

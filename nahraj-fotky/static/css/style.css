@@ -252,4 +252,52 @@ button.upload-submit-btn:focus {
     to { transform: rotate(360deg); }
 }
 
+/* Close button */
+
+.container .page-header {
+  width: 100%;                /* full container width */
+  display: flex;
+  align-items: center;
+  justify-content: center;     /* center heading */
+  margin-bottom: 20px;
+  position: relative;
+  padding: 0 10px;            /* optional side padding */
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 2em;             /* explicit original size */
+  color: #e6f0e8;             /* explicit original color */
+  font-weight: 600;           /* restore intended font weight */
+  text-align: center;
+  flex: 1;
+}
+
+.close-btn {
+  position: absolute;
+  top: 50%;                   /* vertically center relative to header */
+  right: 10px;                /* align to container padding */
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 1.2em;
+  color: #e6f0e8;
+  background: rgba(5,71,42,0.8);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #0a6b3a;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.close-btn:focus {
+  outline: 2px solid #e6f0e8;
+  outline-offset: 2px;
+}
 

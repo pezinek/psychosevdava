@@ -8,32 +8,39 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-  <div class="print-grid" id="grid"></div>
+  <div class="print-grid" id="grid">
+    <!-- Single card template -->
+    <template id="card-template">
+      <div class="print-card">
+        <p>Podělte se o své svatební momentky s Hankou a Romanem!</p>
+        <div class="qr"></div>
+        <p class="url">https://psychosevdava.cz/nahraj-fotky</p>
+      </div>
+    </template>
+  </div>
 
   <script>
-    // mm to px converter (96 DPI)
+    // mm → px (96 DPI)
     const mm2px = mm => mm * (96/25.4);
-    const cardW = mm2px(85);
-    const cardH = mm2px(55);
-
     const container = document.getElementById('grid');
-    const cols = Math.floor(container.clientWidth / cardW);
-    const rows = Math.floor(container.clientHeight / cardH);
+    const template = document.getElementById('card-template').content;
+
+    // Calculate fit
+    const cols = 2
+    const rows = 4
     const total = cols * rows;
     const url = 'https://psychosevdava.cz/nahraj-fotky';
 
     for (let i = 0; i < total; i++) {
-      const card = document.createElement('div');
-      card.className = 'print-card';
-      const msg = document.createElement('p');
-      msg.textContent = 'Podělte se o své svatební momentky s Hankou a Romanem!';
-      const qr = document.createElement('div'); qr.className = 'qr';
-      const link = document.createElement('p'); link.className = 'url';
-      link.textContent = url;
-
-      card.append(msg, qr, link);
+      const card = document.importNode(template, true).querySelector('.print-card');
       container.appendChild(card);
-      new QRCode(qr, { text: url, width: mm2px(20), height: mm2px(20), correctLevel: QRCode.CorrectLevel.H });
+      const qrDiv = card.querySelector('.qr');
+      new QRCode(qrDiv, {
+        text: url,
+        width: mm2px(20),
+        height: mm2px(20),
+        correctLevel: QRCode.CorrectLevel.H
+      });
     }
   </script>
 </body>

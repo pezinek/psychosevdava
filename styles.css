@@ -102,3 +102,85 @@ h1, p {
     color: #e6f0e8; /* light evergreen tint */
 }
 
+/* >>> Tiskové / WYSIWYG karty <<< */
+.print-grid {
+  width: 210mm;
+  height: 297mm;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 5mm 0;
+  background: #ffffff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.print-card {
+  width: 85mm;
+  height: 55mm;
+  margin: 2.5mm auto;
+  box-sizing: border-box;
+  /* jemné zelené pozadí + vodotisk */
+  background-image:
+    url('background.jpg'),
+    linear-gradient(135deg, rgba(230,240,232,0.95), rgba(212,231,220,0.95));
+  background-size: cover;
+  background-blend-mode: overlay;
+  border: 2px solid #0a6b3a;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(5, 71, 42, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3mm 2mm;
+  position: relative;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Zpráva */
+.print-card p {
+  margin: 6mm 0 2mm;
+  font-size: 10pt;
+  color: #05472A;
+  font-weight: 700;
+  /* bílý outline pomocí text-shadow */
+  text-shadow:
+    -1px -1px 0 #ffffff,
+     1px -1px 0 #ffffff,
+    -1px  1px 0 #ffffff,
+     1px  1px 0 #ffffff;
+}
+
+/* QR kód ve středové části s výraznějším zeleným rámečkem a silnějším stínem */
+.print-card .qr {
+  margin: 1mm 0;
+  width: 20mm;
+  height: 20mm;
+  padding: 2px;
+  border: 3px solid #0a6b3a;
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(10, 107, 58, 0.7);
+  background: #ffffff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* URL na spodní části */
+.print-card .url {
+  font-size: 8pt;
+  word-break: break-all;
+  color: #0a6b3a;
+  margin-top: auto;
+  padding-bottom: 1mm;
+  font-weight: 700;
+  /* bílý outline stejné jako p */
+  text-shadow:
+    -1px -1px 0 #ffffff,
+     1px -1px 0 #ffffff,
+    -1px  1px 0 #ffffff,
+     1px  1px 0 #ffffff;
+}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Svatební kartičky</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="print-grid" id="grid"></div>
+
+  <script>
+    // mm to px converter (96 DPI)
+    const mm2px = mm => mm * (96/25.4);
+    const cardW = mm2px(85);
+    const cardH = mm2px(55);
+
+    const container = document.getElementById('grid');
+    const cols = Math.floor(container.clientWidth / cardW);
+    const rows = Math.floor(container.clientHeight / cardH);
+    const total = cols * rows;
+    const url = 'https://psychosevdava.cz/nahraj-fotky';
+
+    for (let i = 0; i < total; i++) {
+      const card = document.createElement('div');
+      card.className = 'print-card';
+      const msg = document.createElement('p');
+      msg.textContent = 'Podělte se o své svatební momentky s Hankou a Romanem!';
+      const qr = document.createElement('div'); qr.className = 'qr';
+      const link = document.createElement('p'); link.className = 'url';
+      link.textContent = url;
+
+      card.append(msg, qr, link);
+      container.appendChild(card);
+      new QRCode(qr, { text: url, width: mm2px(20), height: mm2px(20), correctLevel: QRCode.CorrectLevel.H });
+    }
+  </script>
+</body>
+</html>
+

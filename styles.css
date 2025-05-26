@@ -184,3 +184,24 @@ h1, p {
      1px  1px 0 #ffffff;
 }
 
+/* Unicode tiskárna v pravém dolním rohu */
+.print-icon {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  font-size: 2em;            /* velikost ikony */
+  line-height: 1;
+  text-decoration: none;
+  color: #e6f0e8;            /* světle zelená z vašeho theme */
+  background: rgba(5,71,42,0.6);
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 1000;
+}
+
+.print-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}

@@ -30,14 +30,13 @@
     const cols = 2
     const rows = 4
     const total = cols * rows;
-    const url = 'https://psychosevdava.cz/nahraj-fotky';
 
     for (let i = 0; i < total; i++) {
       const card = document.importNode(template, true).querySelector('.print-card');
       container.appendChild(card);
       const qrDiv = card.querySelector('.qr');
       new QRCode(qrDiv, {
-        text: url,
+        text: 'WIFI:T:WPA;S:redtractor2;P:svatebni@wifi;;',
         width: mm2px(20),
         height: mm2px(20),
         correctLevel: QRCode.CorrectLevel.H

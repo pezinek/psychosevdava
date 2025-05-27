@@ -19,6 +19,8 @@
 	    <p>Kde: <a href="https://www.statekstarytyn.cz/" target="_blank" rel="noopener noreferrer" class="map-link">Na statku Starý Týn – Úštěk</a></p>
 	    <a href="/nahraj-fotky" class="upload-btn">Nahraj fotky</a>
 	    <div id="qrcode" aria-label="QR kód pro nahrání fotek" role="img"></div>
+
+	    <div id="countdown" class="countdown"></div>
         </div>
     </div>
 
@@ -42,6 +44,36 @@
             correctLevel: QRCode.CorrectLevel.H
         });
     </script>
+
+<script>
+  const countdownElement = document.getElementById("countdown");
+  const weddingTime = new Date("2025-05-31T14:00:00+02:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    let diff = weddingTime - now;
+    const afterWedding = diff < 0;
+
+    if (afterWedding) {
+      diff = now - weddingTime; // Kolik už uběhlo
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    if (!afterWedding) {
+	    countdownElement.innerHTML = `Svoboda končí za:<br>${d}d ${h}h ${m}m ${s}s`;
+    } else {
+	    countdownElement.innerHTML = `Už jsou svoji:<br>${d}d ${h}h ${m}m ${s}s ❤️`;
+    }
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
 
 </body>
 </html>

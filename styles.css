@@ -227,3 +227,14 @@ h1, p {
    transform: scale(1.1);
 }
 
+.countdown {
+  color: #e6f0e8; /* light evergreen tint */
+  line-height: 1.3;        /* aby to hezky dýchalo mezi řádky */
+  white-space: pre-line;   /* umožní zalomení přes \n */
+  text-align: center;      /* hezké centrování */
+  margin-top: 10px;        /* odsazení od QR kódu */
+  text-shadow: 0 0 4px rgba(0,0,0,0.6);
+}
+
+
+

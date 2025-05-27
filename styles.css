@@ -154,6 +154,18 @@ h1, p {
      1px  1px 0 #ffffff;
 }
 
+.print-card div {
+  font-size: 8pt;
+  color: #05472A;
+  font-weight: 700;
+  /* bílý outline pomocí text-shadow */
+  text-shadow:
+    -1px -1px 0 #ffffff,
+     1px -1px 0 #ffffff,
+    -1px  1px 0 #ffffff,
+     1px  1px 0 #ffffff;
+}
+
 /* QR kód ve středové části s výraznějším zeleným rámečkem a silnějším stínem */
 .print-card .qr {
   margin: 1mm 0;

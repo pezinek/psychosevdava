@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Svatební kartičky</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="print-grid" id="grid">
+    <!-- Single card template -->
+    <template id="card-template">
+      <div class="print-card">
+        <p>Připojte se k Wi-Fi</p>
+	<div>SSID: <strong>redtractor2</strong></div>
+        <div>Heslo: <strong>svatebni@wifi</strong></div>
+        <div class="qr"></div>
+      </div>
+    </template>
+  </div>
+
+  <script>
+    // mm → px (96 DPI)
+    const mm2px = mm => mm * (96/25.4);
+    const container = document.getElementById('grid');
+    const template = document.getElementById('card-template').content;
+
+    // Calculate fit
+    const cols = 2
+    const rows = 4
+    const total = cols * rows;
+    const url = 'https://psychosevdava.cz/nahraj-fotky';
+
+    for (let i = 0; i < total; i++) {
+      const card = document.importNode(template, true).querySelector('.print-card');
+      container.appendChild(card);
+      const qrDiv = card.querySelector('.qr');
+      new QRCode(qrDiv, {
+        text: url,
+        width: mm2px(20),
+        height: mm2px(20),
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  </script>
+</body>
+</html>
+

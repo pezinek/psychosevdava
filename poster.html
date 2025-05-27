@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Svatební poster</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+    }
+
+    .poster {
+      width: 210mm;
+      height: 277mm;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 15mm 20mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(10, 107, 58, 0.25), rgba(10, 107, 58, 0.25)),
+        url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      font-family: sans-serif;
+    }
+    
+    .step {
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid #0a6b3a;
+      border-radius: 12px;
+      padding: 10mm; /* míň paddingu */
+      text-align: center;
+      width: 100%;
+      max-width: 170mm;
+      box-shadow: 0 0 10px rgba(5, 71, 42, 0.5);
+    }
+    
+    .step h2 {
+      color: #05472A;
+      margin-bottom: 5mm;
+    }
+    
+    .step p {
+      font-size: 14pt;
+      font-weight: bold;
+      color: #05472A;
+      margin: 0 0 5mm;
+    }
+    
+    .step:last-child {
+      padding-bottom: 10mm; /* menší dole */
+      margin-bottom: 0;
+    }
+    
+    .qr {
+      width: 50mm;
+      height: 50mm;
+      margin: 0 auto;
+      padding: 0;              /* vyhodit padding */
+      border: 4px solid #0a6b3a;
+      border-radius: 8px;
+      background: white;
+      box-sizing: border-box; /* důležité */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="poster">
+    <div class="step">
+      <h2>Krok 1: Připoj se k Wi-Fi</h2>
+      <p>SSID: <strong>redtractor2</strong></p>
+      <p>Heslo: <strong>svatebni@wifi</strong></p>
+      <div id="wifi-qr" class="qr"></div>
+    </div>
+    <div class="step">
+      <h2>Krok 2: Nahraj své svatební momentky</h2>
+      <p><strong>https://psychosevdava.cz/nahraj-fotky</strong></p>
+      <div id="upload-qr" class="qr"></div>
+    </div>
+  </div>
+
+  <script>
+    const mm2px = mm => mm * (96/25.4);
+
+    new QRCode(document.getElementById("wifi-qr"), {
+      text: "WIFI:T:WPA;S:redtractor2;P:svatebni@wifi;;",
+      width: mm2px(45),
+      height: mm2px(45),
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    new QRCode(document.getElementById("upload-qr"), {
+      text: "https://psychosevdava.cz/nahraj-fotky",
+      width: mm2px(45),
+      height: mm2px(45),
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
+</body>
+</html>
+

@@ -1,4 +1,5 @@
 flask
 pillow
 gunicorn
+pillow-heif
 #pyheif #requires brew install libheif

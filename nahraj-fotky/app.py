@@ -3,6 +3,9 @@ import os
 import hashlib
 from PIL import Image, ImageOps
 import subprocess
+import pillow_heif
+
+pillow_heif.register_heif_opener()
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploaded_photos'
@@ -61,7 +64,7 @@ def upload_photos():
                 thumbnail_filename_for_display = f'{file_hash}.jpg'
                 thumbnail_path = os.path.join(THUMBNAIL_FOLDER, thumbnail_filename_for_display)
 
-                if file_extension in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
+                if file_extension in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.heic']:
                     try:
                         img = Image.open(filepath)
                         img = ImageOps.exif_transpose(img) # Corrects orientation based on EXIF data

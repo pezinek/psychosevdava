@@ -13,5 +13,5 @@ cd "$PROJECT_DIR" || exit
 source "${VENV_DIR}/bin/activate"
 
 # Run Gunicorn
-exec "${GUNICORN}" --workers 3 --bind 127.0.0.1:"${APP_PORT}" "${FLASK_APP_MODULE}"
+exec "${GUNICORN}" --timeout 3600 --workers 3 --bind 127.0.0.1:"${APP_PORT}" "${FLASK_APP_MODULE}"
 
